@@ -1,7 +1,7 @@
+import { Iconly } from "react-iconly";
 import Input from "./Input";
+import SelectDate from "./SelectDate";
 import Way from "./Way";
-import { FaLocationDot } from "react-icons/fa6";
-import { BsRecordCircleFill } from "react-icons/bs";
 
 const SearchBar = () => {
   return (
@@ -9,12 +9,27 @@ const SearchBar = () => {
       <Way />
       <Input
         placeholder="From: City, Station Or Airport"
-        icon={<BsRecordCircleFill />}
+        icon={
+          <Iconly
+            name="Discovery"
+            set="bold"
+            primaryColor="darkgray"
+            size="medium"
+          />
+        }
       />
       <Input
         placeholder="To: City, Station Or Airport"
-        icon={<FaLocationDot />}
+        icon={
+          <Iconly
+            name="Location"
+            set="bold"
+            primaryColor="darkgray"
+            size="medium"
+          />
+        }
       />
+      <SelectDate />
       <button className="w-full bg-red-400 text-white p-3 mt-2 rounded-xl font-bold">
         Search
       </button>
