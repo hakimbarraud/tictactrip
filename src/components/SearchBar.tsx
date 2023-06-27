@@ -2,6 +2,7 @@ import { Iconly } from "react-iconly";
 import Input from "./Input";
 import SelectDate from "./SelectDate";
 import Way from "./Way";
+import ToggleSwitch from "./ToggleSwitch";
 
 const SearchBar = () => {
   return (
@@ -33,6 +34,7 @@ const SearchBar = () => {
       <button className="w-full bg-red-400 text-white p-3 mt-2 rounded-xl font-bold">
         Search
       </button>
+      <ToggleSwitch />
     </form>
   );
 };
