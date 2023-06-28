@@ -3,10 +3,19 @@ import Input from "./Input";
 import SelectDate from "./SelectDate";
 import Way from "./Way";
 import ToggleSwitch from "./ToggleSwitch";
+import usePopularCities from "../Hooks/usePopularCities";
+import { useState } from "react";
 
 const SearchBar = () => {
+  const [isVisible, setIsVisible] = useState(false);
+
+  const handleVisibility = () => {
+    setIsVisible(true);
+  };
+
+  const { data: popularCities } = usePopularCities();
   return (
-    <form>
+    <form onClick={() => isVisible && setIsVisible(false)}>
       <Way />
       <Input
         placeholder="From: City, Station Or Airport"
@@ -18,6 +27,9 @@ const SearchBar = () => {
             size="medium"
           />
         }
+        data={popularCities}
+        isVisible={isVisible}
+        handleVisibility={handleVisibility}
       />
       <Input
         placeholder="To: City, Station Or Airport"
