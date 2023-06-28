@@ -8,7 +8,7 @@ const ToggleSwitch = () => {
         <input type="checkbox" className="sr-only peer" id="check" />
         <span className="w-2/5 h-4/5 bg-white absolute rounded-full left-1 top-1 peer-checked:bg-sky-600 peer-checked:left-11 transition-all duration-200"></span>
       </label>
-      <p>Find my accomodation</p>
+      <p>Find my accomodation.</p>
     </div>
   );
 };
