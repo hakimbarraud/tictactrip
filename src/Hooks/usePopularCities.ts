@@ -1,11 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import apiClient from "../Services/api-client";
 
-// interface Cities {
-//   id: number;
-//   unique_name: string;
-// }
-
 export interface PopulatCities {
   id: number;
   unique_name: string;

@@ -4,16 +4,27 @@ import SelectDate from "./SelectDate";
 import Way from "./Way";
 import ToggleSwitch from "./ToggleSwitch";
 import usePopularCities from "../Hooks/usePopularCities";
-import { useState } from "react";
+import { SetStateAction, useState } from "react";
+import useAutocomplete from "../Hooks/useAutocomplete";
 
 const SearchBar = () => {
   const [isVisible, setIsVisible] = useState(false);
+  const [searchText, setSearchText] = useState("");
+
+  const { data: popularCities } = usePopularCities();
+  const { data: request } = useAutocomplete(searchText);
+
+  const handleChange = (e: { target: { value: SetStateAction<string> } }) => {
+    setIsVisible(false);
+    setSearchText(e.target.value);
+  };
 
   const handleVisibility = () => {
     setIsVisible(true);
   };
 
-  const { data: popularCities } = usePopularCities();
+  console.log(request);
+
   return (
     <form onClick={() => isVisible && setIsVisible(false)}>
       <Way />
@@ -29,6 +40,9 @@ const SearchBar = () => {
         }
         data={popularCities}
         isVisible={isVisible}
+        request={request}
+        searchText={searchText}
+        handleChange={handleChange}
         handleVisibility={handleVisibility}
       />
       <Input
