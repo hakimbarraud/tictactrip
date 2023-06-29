@@ -6,6 +6,7 @@ import ToggleSwitch from "./ToggleSwitch";
 import usePopularCities from "../Hooks/usePopularCities";
 import { SetStateAction, useState } from "react";
 import useAutocomplete from "../Hooks/useAutocomplete";
+import useDestinationCities from "../Hooks/useDestinationCities";
 
 const SearchBar = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -14,6 +15,9 @@ const SearchBar = () => {
 
   const { data: popularCities } = usePopularCities();
   const { data: request } = useAutocomplete(searchText);
+  const { data: destination } = useDestinationCities();
+
+  console.log(destination);
 
   const handleChange = (e: { target: { value: SetStateAction<string> } }) => {
     setSearchText(e.target.value);

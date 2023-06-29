@@ -47,6 +47,7 @@ const Input = ({
               <p
                 key={city.id}
                 className="py-2 hover:text-blue-700 hover:font-bold cursor-pointer"
+                onClick={setInput(city.unique_name)}
               >
                 {city.unique_name}
               </p>
