@@ -10,14 +10,19 @@ import useDestinationCities from "../Hooks/useDestinationCities";
 
 const SearchBar = () => {
   const [isVisible, setIsVisible] = useState(false);
+  const [isDestinationVisible, setIsDestinationVisible] = useState(false);
   const [searchText, setSearchText] = useState("");
   const [isRequestVisible, setIsRequestVisible] = useState(true);
+  const [destinationText, setDestinationText] = useState("");
 
   const { data: popularCities } = usePopularCities();
   const { data: request } = useAutocomplete(searchText);
-  const { data: destination } = useDestinationCities();
+  const { data: destination } = useDestinationCities(searchText);
 
-  console.log(destination);
+  const handleClickForm = () => {
+    isVisible && setIsVisible(false);
+    isDestinationVisible && setIsDestinationVisible(false);
+  };
 
   const handleChange = (e: { target: { value: SetStateAction<string> } }) => {
     setSearchText(e.target.value);
@@ -37,8 +42,18 @@ const SearchBar = () => {
     };
   };
 
+  const setDestination = (text: string) => {
+    return () => {
+      setDestinationText(text);
+    };
+  };
+
+  const handleDestinationVisibility = () => {
+    setIsDestinationVisible(true);
+  };
+
   return (
-    <form onClick={() => isVisible && setIsVisible(false)}>
+    <form onClick={handleClickForm}>
       <Way />
       <Input
         placeholder="From: City, Station Or Airport"
@@ -69,6 +84,11 @@ const SearchBar = () => {
             size="medium"
           />
         }
+        destination={destination}
+        destinationText={destinationText}
+        setDestination={setDestination}
+        isDestinationVisible={isDestinationVisible}
+        handleDestinationVisibility={handleDestinationVisibility}
       />
       <SelectDate />
       <button className="w-full bg-red-400 text-white p-3 mt-2 rounded-xl font-bold">

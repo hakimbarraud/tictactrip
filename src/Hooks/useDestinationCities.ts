@@ -1,16 +1,16 @@
 import { useQuery } from "@tanstack/react-query";
 import apiClient from "../Services/api-client";
 
-interface DestinationType {
+export interface DestinationType {
   id: number;
   unique_name: string;
 }
 
-const useDestinationCities = () =>
+const useDestinationCities = (searchText: string) =>
   useQuery<DestinationType[]>({
-    queryKey: ["destination"],
+    queryKey: ["destination", searchText],
     queryFn: () =>
-      apiClient.get(`/popular/from/paris/5`).then((res) => res.data),
+      apiClient.get(`/popular/from/${searchText}/5`).then((res) => res.data),
   });
 
 export default useDestinationCities;
