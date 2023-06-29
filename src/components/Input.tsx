@@ -48,11 +48,12 @@ const Input = ({
           value={searchText || destinationText}
           onClick={handleVisibility || handleDestinationVisibility}
           onChange={handleChange}
-          className="block w-full bg-neutral-100 outline-none"
+          className="block w-full bg-neutral-100 outline-none font-semibold placeholder:font-normal"
         />
       </div>
       {isVisible ? (
         <div className="px-12 bg-white border-2 border-black rounded-lg border-opacity-10 p-2 mt-1 shadow-lg absolute w-full z-10">
+          <p className="text-sm text-neutral-400">Popular cities</p>
           {data?.map((city) => (
             <>
               <p
@@ -60,7 +61,8 @@ const Input = ({
                 className="py-2 hover:text-blue-700 hover:font-bold cursor-pointer"
                 onClick={setInput(city.unique_name)}
               >
-                {city.unique_name}
+                {city.unique_name.charAt(0).toUpperCase() +
+                  city.unique_name.slice(1)}
               </p>
               <hr className="w-full" />
             </>
@@ -75,14 +77,15 @@ const Input = ({
                 className="py-2 hover:text-blue-700 hover:font-bold cursor-pointer"
                 onClick={setInput(text.unique_name)}
               >
-                {text.unique_name}
+                {text.unique_name.charAt(0).toUpperCase() +
+                  text.unique_name.slice(1)}
               </p>
               <hr className="w-full" />
             </>
           ))}
         </div>
       ) : null}
-      {isDestinationVisible && (
+      {isDestinationVisible ? (
         <div className="px-12 bg-white border-2 border-black rounded-lg border-opacity-10 p-2 mt-1 shadow-lg absolute w-full z-10">
           {destination?.map((city) => (
             <>
@@ -91,13 +94,14 @@ const Input = ({
                 className="py-2 hover:text-blue-700 hover:font-bold cursor-pointer"
                 onClick={setDestination(city.unique_name)}
               >
-                {city.unique_name}
+                {city.unique_name.charAt(0).toUpperCase() +
+                  city.unique_name.slice(1)}
               </p>
               <hr className="w-full" />
             </>
           ))}
         </div>
-      )}
+      ) : null}
     </div>
   );
 };

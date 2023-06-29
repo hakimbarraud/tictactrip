@@ -37,14 +37,14 @@ const SearchBar = () => {
 
   const setInput = (text: string) => {
     return () => {
-      setSearchText(text);
+      setSearchText(text.charAt(0).toUpperCase() + text.slice(1));
       setIsRequestVisible(false);
     };
   };
 
   const setDestination = (text: string) => {
     return () => {
-      setDestinationText(text);
+      setDestinationText(text.charAt(0).toUpperCase() + text.slice(1));
     };
   };
 
