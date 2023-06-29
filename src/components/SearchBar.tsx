@@ -91,7 +91,14 @@ const SearchBar = () => {
         handleDestinationVisibility={handleDestinationVisibility}
       />
       <SelectDate />
-      <button className="w-full bg-red-400 text-white p-3 mt-2 rounded-xl font-bold">
+      <button
+        className={
+          !searchText || !destinationText
+            ? "bg-neutral-200 text-black w-full p-3 mt-2 rounded-xl font-bold cursor-not-allowed"
+            : "w-full bg-red-400 text-white p-3 mt-2 rounded-xl font-bold"
+        }
+        disabled={!searchText || !destinationText}
+      >
         Search
       </button>
       <ToggleSwitch />
