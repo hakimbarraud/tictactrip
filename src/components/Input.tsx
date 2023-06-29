@@ -11,6 +11,8 @@ interface Props {
   isVisible?: boolean;
   searchText?: string | undefined;
   handleChange?: ChangeEventHandler<HTMLInputElement> | undefined;
+  setInput?: (text: string) => () => void | undefined;
+  isRequestVisible?: boolean | undefined;
 }
 
 const Input = ({
@@ -22,6 +24,8 @@ const Input = ({
   searchText,
   handleChange,
   handleVisibility,
+  setInput,
+  isRequestVisible,
 }: Props) => {
   return (
     <div className="relative">
@@ -50,13 +54,14 @@ const Input = ({
             </>
           ))}
         </div>
-      ) : searchText ? (
+      ) : searchText && isRequestVisible ? (
         <div className="px-12 bg-white border-2 border-black rounded-lg border-opacity-10 p-2 mt-1 shadow-lg absolute w-full z-10">
           {request?.map((text) => (
             <>
               <p
                 key={text.city_id}
                 className="py-2 hover:text-blue-700 hover:font-bold cursor-pointer"
+                onClick={setInput(text.unique_name)}
               >
                 {text.unique_name}
               </p>

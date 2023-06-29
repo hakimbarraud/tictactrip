@@ -10,20 +10,28 @@ import useAutocomplete from "../Hooks/useAutocomplete";
 const SearchBar = () => {
   const [isVisible, setIsVisible] = useState(false);
   const [searchText, setSearchText] = useState("");
+  const [isRequestVisible, setIsRequestVisible] = useState(true);
 
   const { data: popularCities } = usePopularCities();
   const { data: request } = useAutocomplete(searchText);
 
   const handleChange = (e: { target: { value: SetStateAction<string> } }) => {
-    setIsVisible(false);
     setSearchText(e.target.value);
+    setIsVisible(false);
   };
 
   const handleVisibility = () => {
-    setIsVisible(true);
+    if (!searchText) {
+      setIsVisible(true);
+    }
   };
 
-  console.log(request);
+  const setInput = (text: string) => {
+    return () => {
+      setSearchText(text);
+      setIsRequestVisible(false);
+    };
+  };
 
   return (
     <form onClick={() => isVisible && setIsVisible(false)}>
@@ -44,6 +52,8 @@ const SearchBar = () => {
         searchText={searchText}
         handleChange={handleChange}
         handleVisibility={handleVisibility}
+        setInput={setInput}
+        isRequestVisible={isRequestVisible}
       />
       <Input
         placeholder="To: City, Station Or Airport"
