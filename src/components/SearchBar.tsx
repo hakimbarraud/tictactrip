@@ -37,7 +37,7 @@ const SearchBar = () => {
 
   const setInput = (text: string) => {
     return () => {
-      setSearchText(text.charAt(0).toUpperCase() + text.slice(1));
+      setSearchText(text);
       setIsRequestVisible(false);
     };
   };

@@ -11,6 +11,7 @@ const useDestinationCities = (searchText: string) =>
     queryKey: ["destination", searchText],
     queryFn: () =>
       apiClient.get(`/popular/from/${searchText}/5`).then((res) => res.data),
+    enabled: !!searchText,
   });
 
 export default useDestinationCities;

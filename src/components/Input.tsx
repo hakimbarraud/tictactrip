@@ -1,4 +1,4 @@
-import { ChangeEventHandler, ReactNode } from "react";
+import { ChangeEventHandler, Fragment, ReactNode } from "react";
 import { AutocompleteType } from "../Hooks/useAutocomplete";
 import { PopulatCities } from "../Hooks/usePopularCities";
 import { DestinationType } from "../Hooks/useDestinationCities";
@@ -11,8 +11,8 @@ interface Props {
   destination?: DestinationType[] | undefined;
   handleVisibility?: () => void | undefined;
   isVisible?: boolean;
-  searchText?: string | undefined;
-  destinationText?: string | undefined;
+  searchText?: string;
+  destinationText?: string;
   handleChange?: ChangeEventHandler<HTMLInputElement> | undefined;
   handleDestinationChange?: ChangeEventHandler<HTMLInputElement> | undefined;
   setInput?: (text: string) => () => void | undefined;
@@ -29,8 +29,8 @@ const Input = ({
   isVisible,
   request,
   destination,
-  searchText,
-  destinationText,
+  searchText = "",
+  destinationText = "",
   handleChange,
   handleDestinationChange,
   handleVisibility,
@@ -57,50 +57,44 @@ const Input = ({
         <div className="px-12 bg-white border-2 border-black rounded-lg border-opacity-10 p-2 mt-1 shadow-lg absolute w-full z-10">
           <p className="text-sm text-neutral-400">Popular cities</p>
           {data?.map((city) => (
-            <>
+            <Fragment key={city.id}>
               <p
-                key={city.id}
                 className="py-2 hover:text-blue-700 hover:font-bold cursor-pointer"
-                onClick={setInput(city.unique_name)}
+                onClick={setInput?.(city.unique_name)}
               >
-                {city.unique_name.charAt(0).toUpperCase() +
-                  city.unique_name.slice(1)}
+                {city.unique_name}
               </p>
               <hr className="w-full" />
-            </>
+            </Fragment>
           ))}
         </div>
       ) : searchText && isRequestVisible ? (
         <div className="px-12 bg-white border-2 border-black rounded-lg border-opacity-10 p-2 mt-1 shadow-lg absolute w-full z-10">
           {request?.map((text) => (
-            <>
+            <Fragment key={text.city_id}>
               <p
-                key={text.city_id}
                 className="py-2 hover:text-blue-700 hover:font-bold cursor-pointer"
-                onClick={setInput(text.unique_name)}
+                onClick={setInput?.(text.unique_name)}
               >
-                {text.unique_name.charAt(0).toUpperCase() +
-                  text.unique_name.slice(1)}
+                {text.unique_name}
               </p>
               <hr className="w-full" />
-            </>
+            </Fragment>
           ))}
         </div>
       ) : null}
       {isDestinationVisible ? (
         <div className="px-12 bg-white border-2 border-black rounded-lg border-opacity-10 p-2 mt-1 shadow-lg absolute w-full z-10">
           {destination?.map((city) => (
-            <>
+            <Fragment key={city.id}>
               <p
-                key={city.id}
                 className="py-2 hover:text-blue-700 hover:font-bold cursor-pointer"
-                onClick={setDestination(city.unique_name)}
+                onClick={setDestination?.(city.unique_name)}
               >
-                {city.unique_name.charAt(0).toUpperCase() +
-                  city.unique_name.slice(1)}
+                {city.unique_name}
               </p>
               <hr className="w-full" />
-            </>
+            </Fragment>
           ))}
         </div>
       ) : null}
