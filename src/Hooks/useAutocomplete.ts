@@ -16,3 +16,4 @@ const useAutocomplete = (searchText?: string) =>
   });
 
 export default useAutocomplete;
+ 

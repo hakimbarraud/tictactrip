@@ -48,8 +48,15 @@ const SearchBar = () => {
     };
   };
 
+  const handleDestinationChange = (e: {
+    target: { value: SetStateAction<string> };
+  }) => {
+    setDestinationText(e.target.value);
+  };
+
   const handleDestinationVisibility = () => {
     setIsDestinationVisible(true);
+    setIsVisible(false);
   };
 
   return (
@@ -89,6 +96,7 @@ const SearchBar = () => {
         setDestination={setDestination}
         isDestinationVisible={isDestinationVisible}
         handleDestinationVisibility={handleDestinationVisibility}
+        handleDestinationChange={handleDestinationChange}
       />
       <SelectDate />
       <button

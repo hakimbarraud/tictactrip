@@ -14,6 +14,7 @@ interface Props {
   searchText?: string | undefined;
   destinationText?: string | undefined;
   handleChange?: ChangeEventHandler<HTMLInputElement> | undefined;
+  handleDestinationChange?: ChangeEventHandler<HTMLInputElement> | undefined;
   setInput?: (text: string) => () => void | undefined;
   setDestination?: (text: string) => () => void | undefined;
   isRequestVisible?: boolean | undefined;
@@ -31,6 +32,7 @@ const Input = ({
   searchText,
   destinationText,
   handleChange,
+  handleDestinationChange,
   handleVisibility,
   setInput,
   isRequestVisible,
@@ -47,7 +49,7 @@ const Input = ({
           placeholder={placeholder}
           value={searchText || destinationText}
           onClick={handleVisibility || handleDestinationVisibility}
-          onChange={handleChange}
+          onChange={handleChange || handleDestinationChange}
           className="block w-full bg-neutral-100 outline-none font-semibold placeholder:font-normal"
         />
       </div>
