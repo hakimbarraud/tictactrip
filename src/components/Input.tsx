@@ -44,7 +44,7 @@ const Input = ({
   destination,
 }: Props) => {
   return (
-    <>
+    <div className="relative">
       <div className="flex items-center p-3 mt-2 gap-4 bg-neutral-100 rounded-xl">
         <div>{icon}</div>
         <input
@@ -66,7 +66,7 @@ const Input = ({
           setDestination={setDestination}
         />
       )}
-    </>
+    </div>
   );
 };
 
