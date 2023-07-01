@@ -9,28 +9,28 @@ import TrendingCities from "./TrendingCities";
 interface Props {
   placeholder: string;
   icon: ReactNode;
-  data?: PopulatCities[] | undefined;
-  request?: AutocompleteType[] | undefined;
-  destination?: DestinationType[] | undefined;
+  data?: PopulatCities[];
+  request?: AutocompleteType[];
+  destination?: DestinationType[];
   searchText?: string;
   destinationText?: string;
   isVisible?: boolean;
-  isRequestVisible?: boolean | undefined;
-  isDestinationVisible?: boolean | undefined;
-  handleChange?: ChangeEventHandler<HTMLInputElement> | undefined;
-  handleVisibility?: () => void | undefined;
-  handleDestinationChange?: ChangeEventHandler<HTMLInputElement> | undefined;
-  setInput?: (text: string) => () => void | undefined;
-  setDestination?: (text: string) => () => void | undefined;
-  handleDestinationVisibility?: () => void | undefined;
+  isRequestVisible?: boolean;
+  isDestinationVisible?: boolean;
+  handleChange?: ChangeEventHandler<HTMLInputElement>;
+  handleVisibility?: () => void;
+  handleDestinationChange?: ChangeEventHandler<HTMLInputElement>;
+  setInput?: (text: string) => () => void;
+  setDestination?: (text: string) => () => void;
+  handleDestinationVisibility?: () => void;
 }
 
 const Input = ({
   placeholder,
   icon,
   data,
-  searchText = "",
-  destinationText = "",
+  searchText,
+  destinationText,
   isVisible,
   isRequestVisible,
   isDestinationVisible,
