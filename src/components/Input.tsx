@@ -42,11 +42,6 @@ const Input = ({
   request,
   destination,
 }: Props) => {
-  const handleAutocompleteClick = (text: string) => () => {
-    setInput?.(text)();
-    handleVisibility?.();
-  };
-
   return (
     <div className="relative">
       <div className="flex items-center p-3 mt-2 gap-4 bg-neutral-100 rounded-xl">
