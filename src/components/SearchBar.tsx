@@ -13,10 +13,12 @@ const SearchBar = () => {
   const [isDestinationVisible, setIsDestinationVisible] = useState(false);
   const [searchText, setSearchText] = useState("");
   const [isRequestVisible, setIsRequestVisible] = useState(true);
+  const [isDestinationRequestVisible, setIsDestinationRequestVisible] =
+    useState(true);
   const [destinationText, setDestinationText] = useState("");
 
   const { data: popularCities } = usePopularCities();
-  const { data: request } = useAutocomplete(searchText);
+  const { data: request } = useAutocomplete(destinationText || searchText);
   const { data: destination } = useDestinationCities(searchText);
 
   const handleClickForm = () => {
@@ -45,6 +47,7 @@ const SearchBar = () => {
   const setDestination = (text: string) => {
     return () => {
       setDestinationText(text);
+      setIsDestinationRequestVisible(false);
     };
   };
 
@@ -94,11 +97,13 @@ const SearchBar = () => {
             />
           }
           destination={destination}
-          destinationText={destinationText}
-          setDestination={setDestination}
           isDestinationVisible={isDestinationVisible}
-          handleDestinationVisibility={handleDestinationVisibility}
+          request={request}
+          destinationText={destinationText}
           handleDestinationChange={handleDestinationChange}
+          handleDestinationVisibility={handleDestinationVisibility}
+          setDestination={setDestination}
+          isDestinationRequestVisible={isDestinationRequestVisible}
         />
         <SelectDate />
         <div>

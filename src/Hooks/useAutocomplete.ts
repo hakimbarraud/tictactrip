@@ -6,14 +6,13 @@ export interface AutocompleteType {
   unique_name: string;
 }
 
-const useAutocomplete = (searchText?: string) =>
+const useAutocomplete = (value?: string) =>
   useQuery<AutocompleteType[]>({
-    queryKey: ["value", searchText],
+    queryKey: ["value", value],
     queryFn: () =>
       apiClient
-        .get("/autocomplete", { params: { q: searchText } })
+        .get("/autocomplete", { params: { q: value } })
         .then((res) => res.data),
   });
 
 export default useAutocomplete;
- 

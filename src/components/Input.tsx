@@ -16,6 +16,7 @@ interface Props {
   destinationText?: string;
   isVisible?: boolean;
   isRequestVisible?: boolean;
+  isDestinationRequestVisible?: boolean;
   isDestinationVisible?: boolean;
   handleChange?: ChangeEventHandler<HTMLInputElement>;
   handleVisibility?: () => void;
@@ -32,6 +33,7 @@ const Input = ({
   searchText,
   destinationText,
   isVisible,
+  isDestinationRequestVisible,
   isRequestVisible,
   isDestinationVisible,
   handleChange,
@@ -65,6 +67,9 @@ const Input = ({
           destination={destination}
           setDestination={setDestination}
         />
+      )}
+      {destinationText && isDestinationRequestVisible && (
+        <AutocompleteResults request={request} setInput={setDestination} />
       )}
     </div>
   );
