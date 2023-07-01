@@ -44,7 +44,7 @@ const SearchBar = () => {
 
   const setDestination = (text: string) => {
     return () => {
-      setDestinationText(text.charAt(0).toUpperCase() + text.slice(1));
+      setDestinationText(text);
     };
   };
 
@@ -52,6 +52,7 @@ const SearchBar = () => {
     target: { value: SetStateAction<string> };
   }) => {
     setDestinationText(e.target.value);
+    setIsDestinationVisible(false);
   };
 
   const handleDestinationVisibility = () => {
