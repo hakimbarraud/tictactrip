@@ -1,8 +1,9 @@
-import { ChangeEventHandler, Fragment, ReactNode } from "react";
+import { ChangeEventHandler, ReactNode } from "react";
 import { AutocompleteType } from "../Hooks/useAutocomplete";
-import { PopulatCities } from "../Hooks/usePopularCities";
 import { DestinationType } from "../Hooks/useDestinationCities";
+import { PopulatCities } from "../Hooks/usePopularCities";
 import AutocompleteResults from "./AutocompleteResults";
+import DestinationOptions from "./DestinationOptions";
 import TrendingCities from "./TrendingCities";
 
 interface Props {
@@ -60,20 +61,10 @@ const Input = ({
         <AutocompleteResults request={request} setInput={setInput} />
       )}
       {isDestinationVisible && (
-        <div className="px-12 bg-white border-2 border-black rounded-lg border-opacity-10 p-2 mt-1 shadow-lg absolute w-full z-10">
-          <p className="text-sm text-neutral-400">Popular Destinations</p>
-          {destination?.map((city) => (
-            <Fragment key={city.id}>
-              <p
-                className="py-2 hover:text-blue-700 hover:font-bold cursor-pointer"
-                onClick={setDestination?.(city.unique_name)}
-              >
-                {city.unique_name}
-              </p>
-              <hr className="w-full" />
-            </Fragment>
-          ))}
-        </div>
+        <DestinationOptions
+          destination={destination}
+          setDestination={setDestination}
+        />
       )}
     </div>
   );
