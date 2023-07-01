@@ -2,6 +2,8 @@ import { ChangeEventHandler, Fragment, ReactNode } from "react";
 import { AutocompleteType } from "../Hooks/useAutocomplete";
 import { PopulatCities } from "../Hooks/usePopularCities";
 import { DestinationType } from "../Hooks/useDestinationCities";
+import AutocompleteResults from "./AutocompleteResults";
+import TrendingCities from "./TrendingCities";
 
 interface Props {
   placeholder: string;
@@ -9,16 +11,16 @@ interface Props {
   data?: PopulatCities[] | undefined;
   request?: AutocompleteType[] | undefined;
   destination?: DestinationType[] | undefined;
-  handleVisibility?: () => void | undefined;
-  isVisible?: boolean;
   searchText?: string;
   destinationText?: string;
+  isVisible?: boolean;
+  isRequestVisible?: boolean | undefined;
+  isDestinationVisible?: boolean | undefined;
   handleChange?: ChangeEventHandler<HTMLInputElement> | undefined;
+  handleVisibility?: () => void | undefined;
   handleDestinationChange?: ChangeEventHandler<HTMLInputElement> | undefined;
   setInput?: (text: string) => () => void | undefined;
   setDestination?: (text: string) => () => void | undefined;
-  isRequestVisible?: boolean | undefined;
-  isDestinationVisible?: boolean | undefined;
   handleDestinationVisibility?: () => void | undefined;
 }
 
@@ -26,20 +28,25 @@ const Input = ({
   placeholder,
   icon,
   data,
-  isVisible,
-  request,
-  destination,
   searchText = "",
   destinationText = "",
-  handleChange,
-  handleDestinationChange,
-  handleVisibility,
-  setInput,
+  isVisible,
   isRequestVisible,
-  setDestination,
   isDestinationVisible,
+  handleChange,
+  handleVisibility,
+  handleDestinationChange,
+  setInput,
+  setDestination,
   handleDestinationVisibility,
+  request,
+  destination,
 }: Props) => {
+  const handleAutocompleteClick = (text: string) => () => {
+    setInput?.(text)();
+    handleVisibility?.();
+  };
+
   return (
     <div className="relative">
       <div className="flex items-center p-3 mt-2 gap-4 bg-neutral-100 rounded-xl">
@@ -53,37 +60,11 @@ const Input = ({
           className="block w-full bg-neutral-100 outline-none font-semibold placeholder:font-normal"
         />
       </div>
-      {isVisible ? (
-        <div className="px-12 bg-white border-2 border-black rounded-lg border-opacity-10 p-2 mt-1 shadow-lg absolute w-full z-10">
-          <p className="text-sm text-neutral-400">Trending Cities</p>
-          {data?.map((city) => (
-            <Fragment key={city.id}>
-              <p
-                className="py-2 hover:text-blue-700 hover:font-bold cursor-pointer"
-                onClick={setInput?.(city.unique_name)}
-              >
-                {city.unique_name}
-              </p>
-              <hr className="w-full" />
-            </Fragment>
-          ))}
-        </div>
-      ) : searchText && isRequestVisible ? (
-        <div className="px-12 bg-white border-2 border-black rounded-lg border-opacity-10 p-2 mt-1 shadow-lg absolute w-full z-10">
-          {request?.map((text) => (
-            <Fragment key={text.city_id}>
-              <p
-                className="py-2 hover:text-blue-700 hover:font-bold cursor-pointer"
-                onClick={setInput?.(text.unique_name)}
-              >
-                {text.unique_name}
-              </p>
-              <hr className="w-full" />
-            </Fragment>
-          ))}
-        </div>
-      ) : null}
-      {isDestinationVisible ? (
+      {isVisible && <TrendingCities data={data} setInput={setInput} />}
+      {searchText && isRequestVisible && (
+        <AutocompleteResults request={request} setInput={setInput} />
+      )}
+      {isDestinationVisible && (
         <div className="px-12 bg-white border-2 border-black rounded-lg border-opacity-10 p-2 mt-1 shadow-lg absolute w-full z-10">
           <p className="text-sm text-neutral-400">Popular Destinations</p>
           {destination?.map((city) => (
@@ -98,7 +79,7 @@ const Input = ({
             </Fragment>
           ))}
         </div>
-      ) : null}
+      )}
     </div>
   );
 };
