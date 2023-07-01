@@ -2,8 +2,8 @@ import { Fragment } from "react";
 import { AutocompleteType } from "../Hooks/useAutocomplete";
 
 interface Props {
-  request?: AutocompleteType[] | undefined;
-  setInput?: (text: string) => () => void | undefined;
+  request?: AutocompleteType[];
+  setInput?: (text: string) => () => void;
 }
 
 const AutocompleteResults = ({

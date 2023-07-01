@@ -2,8 +2,8 @@ import { Fragment } from "react";
 import { PopulatCities } from "../Hooks/usePopularCities";
 
 interface Props {
-  data?: PopulatCities[] | undefined;
-  setInput?: (text: string) => () => void | undefined;
+  data?: PopulatCities[];
+  setInput?: (text: string) => () => void;
 }
 
 const TrendingCities = ({ data, setInput }: Props) => (

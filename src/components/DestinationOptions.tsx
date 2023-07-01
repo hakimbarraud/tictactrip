@@ -2,8 +2,8 @@ import { Fragment } from "react";
 import { DestinationType } from "../Hooks/useDestinationCities";
 
 interface Props {
-  destination?: DestinationType[] | undefined;
-  setDestination?: (text: string) => () => void | undefined;
+  destination?: DestinationType[];
+  setDestination?: (text: string) => () => void;
 }
 
 const DestinationOptions = ({
