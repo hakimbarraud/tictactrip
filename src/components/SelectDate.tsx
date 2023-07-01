@@ -15,8 +15,8 @@ const SelectDate = () => {
   };
 
   return (
-    <div className="p-3 rounded-lg mt-2 bg-neutral-100 flex">
-      <div className="flex items-center ">
+    <div className="p-3 rounded-lg mt-2 bg-neutral-100 flex gap-2 w-full overflow-hidden">
+      <div className="flex items-center w-1/2">
         <div>
           <Iconly
             name="Calendar"
@@ -37,18 +37,20 @@ const SelectDate = () => {
           placeholderText="Choose a date"
         />
       </div>
-      <DatePicker
-        selected={endDate}
-        onChange={(date) => setEndDate(date)}
-        selectsEnd
-        startDate={startDate}
-        endDate={endDate}
-        minDate={startDate}
-        dateFormat="EE, d MMM"
-        className=" bg-neutral-100 outline-none placeholder:text-neutral-400 pl-2"
-        placeholderText="+ Add return"
-        calendarStartDay={1}
-      />
+      <div className="w-1/2">
+        <DatePicker
+          selected={endDate}
+          onChange={(date) => setEndDate(date)}
+          selectsEnd
+          startDate={startDate}
+          endDate={endDate}
+          minDate={startDate}
+          dateFormat="EE, d MMM"
+          className="bg-neutral-100 outline-none placeholder:text-neutral-400 pl-2"
+          placeholderText="+ Add return"
+          calendarStartDay={1}
+        />
+      </div>
     </div>
   );
 };

@@ -55,7 +55,7 @@ const Input = ({
       </div>
       {isVisible ? (
         <div className="px-12 bg-white border-2 border-black rounded-lg border-opacity-10 p-2 mt-1 shadow-lg absolute w-full z-10">
-          <p className="text-sm text-neutral-400">Popular cities</p>
+          <p className="text-sm text-neutral-400">Trending Cities</p>
           {data?.map((city) => (
             <Fragment key={city.id}>
               <p
@@ -85,6 +85,7 @@ const Input = ({
       ) : null}
       {isDestinationVisible ? (
         <div className="px-12 bg-white border-2 border-black rounded-lg border-opacity-10 p-2 mt-1 shadow-lg absolute w-full z-10">
+          <p className="text-sm text-neutral-400">Popular Destinations</p>
           {destination?.map((city) => (
             <Fragment key={city.id}>
               <p

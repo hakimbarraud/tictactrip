@@ -61,56 +61,60 @@ const SearchBar = () => {
   };
 
   return (
-    <form onClick={handleClickForm}>
+    <form onClick={handleClickForm} className="w-full">
       <Way />
-      <Input
-        placeholder="From: City, Station Or Airport"
-        icon={
-          <Iconly
-            name="Discovery"
-            set="bold"
-            primaryColor="darkgray"
-            size="medium"
-          />
-        }
-        data={popularCities}
-        isVisible={isVisible}
-        request={request}
-        searchText={searchText}
-        handleChange={handleChange}
-        handleVisibility={handleVisibility}
-        setInput={setInput}
-        isRequestVisible={isRequestVisible}
-      />
-      <Input
-        placeholder="To: City, Station Or Airport"
-        icon={
-          <Iconly
-            name="Location"
-            set="bold"
-            primaryColor="darkgray"
-            size="medium"
-          />
-        }
-        destination={destination}
-        destinationText={destinationText}
-        setDestination={setDestination}
-        isDestinationVisible={isDestinationVisible}
-        handleDestinationVisibility={handleDestinationVisibility}
-        handleDestinationChange={handleDestinationChange}
-      />
-      <SelectDate />
-      <button
-        className={
-          !searchText || !destinationText
-            ? "bg-neutral-200 text-black w-full p-3 mt-2 rounded-xl font-bold cursor-not-allowed"
-            : "w-full bg-red-400 text-white p-3 mt-2 rounded-xl font-bold"
-        }
-        disabled={!searchText || !destinationText}
-      >
-        Search
-      </button>
-      <ToggleSwitch />
+      <div className="md:grid grid-cols-4 items-start gap-4">
+        <Input
+          placeholder="From: City, Station Or Airport"
+          icon={
+            <Iconly
+              name="Discovery"
+              set="bold"
+              primaryColor="darkgray"
+              size="medium"
+            />
+          }
+          data={popularCities}
+          isVisible={isVisible}
+          request={request}
+          searchText={searchText}
+          handleChange={handleChange}
+          handleVisibility={handleVisibility}
+          setInput={setInput}
+          isRequestVisible={isRequestVisible}
+        />
+        <Input
+          placeholder="To: City, Station Or Airport"
+          icon={
+            <Iconly
+              name="Location"
+              set="bold"
+              primaryColor="darkgray"
+              size="medium"
+            />
+          }
+          destination={destination}
+          destinationText={destinationText}
+          setDestination={setDestination}
+          isDestinationVisible={isDestinationVisible}
+          handleDestinationVisibility={handleDestinationVisibility}
+          handleDestinationChange={handleDestinationChange}
+        />
+        <SelectDate />
+        <div>
+          <button
+            className={
+              !searchText || !destinationText
+                ? "bg-neutral-200 text-black w-full p-3 mt-2 rounded-xl font-bold cursor-not-allowed"
+                : "w-full bg-red-400 text-white p-3 mt-2 rounded-xl font-bold"
+            }
+            disabled={!searchText || !destinationText}
+          >
+            Search
+          </button>
+          <ToggleSwitch />
+        </div>
+      </div>
     </form>
   );
 };
