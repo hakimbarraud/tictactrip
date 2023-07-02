@@ -1,6 +1,5 @@
 import { ChangeEventHandler, ReactNode } from "react";
 import { AutocompleteType } from "../Hooks/useAutocomplete";
-import { DestinationType } from "../Hooks/useDestinationCities";
 import AutocompleteResults from "./AutocompleteResults";
 import DestinationOptions from "./DestinationOptions";
 import TrendingCities from "./TrendingCities";
@@ -8,39 +7,33 @@ import TrendingCities from "./TrendingCities";
 interface Props {
   placeholder: string;
   icon: ReactNode;
+  value: string;
+  city?: string;
   request?: AutocompleteType[];
-  destination?: DestinationType[];
-  searchText?: string;
-  destinationText?: string;
   isVisible?: boolean;
   isRequestVisible?: boolean;
   isDestinationRequestVisible?: boolean;
   isDestinationVisible?: boolean;
-  handleChange?: ChangeEventHandler<HTMLInputElement>;
-  handleVisibility?: () => void;
-  handleDestinationChange?: ChangeEventHandler<HTMLInputElement>;
+  change: ChangeEventHandler<HTMLInputElement>;
+  click: () => void;
   setInput?: (text: string) => () => void;
   setDestination?: (text: string) => () => void;
-  handleDestinationVisibility?: () => void;
 }
 
 const Input = ({
   placeholder,
   icon,
-  searchText,
-  destinationText,
+  value,
+  city = "",
   isVisible,
   isDestinationRequestVisible,
   isRequestVisible,
   isDestinationVisible,
-  handleChange,
-  handleVisibility,
-  handleDestinationChange,
   setInput,
   setDestination,
-  handleDestinationVisibility,
+  click,
   request,
-  destination,
+  change,
 }: Props) => {
   return (
     <div className="relative">
@@ -49,23 +42,20 @@ const Input = ({
         <input
           type="text"
           placeholder={placeholder}
-          value={searchText || destinationText}
-          onClick={handleVisibility || handleDestinationVisibility}
-          onChange={handleChange || handleDestinationChange}
+          value={value}
+          onClick={click}
+          onChange={change}
           className="block w-full bg-neutral-100 outline-none font-semibold placeholder:font-normal"
         />
       </div>
       {isVisible && <TrendingCities setInput={setInput} />}
-      {searchText && isRequestVisible && (
+      {value && isRequestVisible && (
         <AutocompleteResults request={request} setInput={setInput} />
       )}
       {isDestinationVisible && (
-        <DestinationOptions
-          destination={destination}
-          setDestination={setDestination}
-        />
+        <DestinationOptions setDestination={setDestination} city={city} />
       )}
-      {destinationText && isDestinationRequestVisible && (
+      {value && isDestinationRequestVisible && (
         <AutocompleteResults request={request} setInput={setDestination} />
       )}
     </div>
