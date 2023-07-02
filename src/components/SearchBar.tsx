@@ -3,7 +3,6 @@ import { Iconly } from "react-iconly";
 import Input from "./Input";
 import SelectDate from "./SelectDate";
 import ToggleSwitch from "./ToggleSwitch";
-import Way from "./Way";
 
 const SearchBar = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -58,7 +57,6 @@ const SearchBar = () => {
 
   return (
     <form onClick={handleClickForm} className="w-full">
-      <Way />
       <div className="md:grid grid-cols-4 items-start gap-4">
         <Input
           placeholder="From: City, Station Or Airport"
