@@ -11,9 +11,15 @@ const DestinationOptions = ({
   city,
 }: Pick<Props, "setDestination" | "city">) => {
   const { data } = useDestinationCities(city);
+
+  if (!city) return null;
+
   return (
     <div className="px-12 bg-white border-2 border-black rounded-lg border-opacity-10 p-2 mt-1 shadow-lg absolute w-full z-10">
-      <p className="text-sm text-neutral-400">Popular Destinations</p>
+      <p className="text-sm text-neutral-400">
+        Popular Destinations from "
+        {city.charAt(0).toUpperCase() + city.slice(1)}"
+      </p>
       {data?.map((city) => (
         <Fragment key={city.id}>
           <p
