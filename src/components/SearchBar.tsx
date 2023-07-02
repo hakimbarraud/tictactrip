@@ -3,7 +3,6 @@ import Input from "./Input";
 import SelectDate from "./SelectDate";
 import Way from "./Way";
 import ToggleSwitch from "./ToggleSwitch";
-import usePopularCities from "../Hooks/usePopularCities";
 import { SetStateAction, useState } from "react";
 import useAutocomplete from "../Hooks/useAutocomplete";
 import useDestinationCities from "../Hooks/useDestinationCities";
@@ -17,7 +16,6 @@ const SearchBar = () => {
     useState(true);
   const [destinationText, setDestinationText] = useState("");
 
-  const { data: popularCities } = usePopularCities();
   const { data: request } = useAutocomplete(destinationText || searchText);
   const { data: destination } = useDestinationCities(searchText);
 
@@ -77,7 +75,6 @@ const SearchBar = () => {
               size="medium"
             />
           }
-          data={popularCities}
           isVisible={isVisible}
           request={request}
           searchText={searchText}

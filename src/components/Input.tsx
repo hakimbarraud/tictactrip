@@ -1,7 +1,6 @@
 import { ChangeEventHandler, ReactNode } from "react";
 import { AutocompleteType } from "../Hooks/useAutocomplete";
 import { DestinationType } from "../Hooks/useDestinationCities";
-import { PopulatCities } from "../Hooks/usePopularCities";
 import AutocompleteResults from "./AutocompleteResults";
 import DestinationOptions from "./DestinationOptions";
 import TrendingCities from "./TrendingCities";
@@ -9,7 +8,6 @@ import TrendingCities from "./TrendingCities";
 interface Props {
   placeholder: string;
   icon: ReactNode;
-  data?: PopulatCities[];
   request?: AutocompleteType[];
   destination?: DestinationType[];
   searchText?: string;
@@ -29,7 +27,6 @@ interface Props {
 const Input = ({
   placeholder,
   icon,
-  data,
   searchText,
   destinationText,
   isVisible,
@@ -58,7 +55,7 @@ const Input = ({
           className="block w-full bg-neutral-100 outline-none font-semibold placeholder:font-normal"
         />
       </div>
-      {isVisible && <TrendingCities data={data} setInput={setInput} />}
+      {isVisible && <TrendingCities setInput={setInput} />}
       {searchText && isRequestVisible && (
         <AutocompleteResults request={request} setInput={setInput} />
       )}
