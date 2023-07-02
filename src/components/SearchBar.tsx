@@ -13,6 +13,7 @@ const SearchBar = () => {
   const [isDestinationRequestVisible, setIsDestinationRequestVisible] =
     useState(true);
   const [destinationText, setDestinationText] = useState("");
+
   const handleClickForm = () => {
     isVisible && setIsVisible(false);
     isDestinationVisible && setIsDestinationVisible(false);
