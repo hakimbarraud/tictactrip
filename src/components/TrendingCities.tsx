@@ -17,7 +17,7 @@ const TrendingCities = ({ setInput }: Props) => {
       {data?.map((city) => (
         <Fragment key={city.id}>
           <p
-            className="py-2 hover:text-blue-700 hover:font-bold cursor-pointer"
+            className="py-2 hover:text-red-400 hover:font-bold cursor-pointer"
             onClick={setInput?.(city.unique_name)}
           >
             {city.unique_name}

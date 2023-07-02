@@ -63,9 +63,14 @@ const SearchBar = () => {
     setIsDestinationVisible(true);
     setIsVisible(false);
   };
+  const handleSubmit = (e: { preventDefault: () => void }) => {
+    e.preventDefault();
+    setSearchText("");
+    setDestinationText("");
+  };
 
   return (
-    <form onClick={handleClickForm} className="w-full">
+    <form onClick={handleClickForm} onSubmit={handleSubmit} className="w-full">
       <div className="md:grid grid-cols-4 items-start gap-4">
         <Input
           placeholder="From: City, Station Or Airport"

@@ -17,7 +17,7 @@ const AutocompleteResults = ({ setInput, text }: Props) => {
       {data?.map((text) => (
         <Fragment key={text.city_id}>
           <p
-            className="py-2 hover:text-blue-700 hover:font-bold cursor-pointer"
+            className="py-2 hover:text-red-400 hover:font-bold cursor-pointer"
             onClick={setInput?.(text.unique_name)}
           >
             {text.unique_name}

@@ -23,7 +23,7 @@ const DestinationOptions = ({ setDestination, city }: Props) => {
       {data?.map((city) => (
         <Fragment key={city.id}>
           <p
-            className="py-2 hover:text-blue-700 hover:font-bold cursor-pointer"
+            className="py-2 hover:text-red-400 hover:font-bold cursor-pointer"
             onClick={setDestination?.(city.unique_name)}
           >
             {city.unique_name}
