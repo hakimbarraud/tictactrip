@@ -5,31 +5,37 @@ import SelectDate from "./SelectDate";
 import ToggleSwitch from "./ToggleSwitch";
 
 const SearchBar = () => {
-  const [isVisible, setIsVisible] = useState(false);
-  const [isDestinationVisible, setIsDestinationVisible] = useState(false);
-  const [searchText, setSearchText] = useState("");
-  const [isRequestVisible, setIsRequestVisible] = useState(true);
+  // STATE VARIABLES //
+  const [searchText, setSearchText] = useState(""); // State to keep track of the first input text
+  const [destinationText, setDestinationText] = useState(""); // State to keep track of the second input text
+  const [isVisible, setIsVisible] = useState(false); // State to show/hide the input field suggestions in the first input text
+  const [isDestinationVisible, setIsDestinationVisible] = useState(false); // State to show/hide the input field suggestions in the second input text
+  const [isRequestVisible, setIsRequestVisible] = useState(true); // State to show/hide the autocomplete component in the first input text
   const [isDestinationRequestVisible, setIsDestinationRequestVisible] =
-    useState(true);
-  const [destinationText, setDestinationText] = useState("");
+    useState(true); // State to show/hide the autocomplete component in the second input text
 
+  // FUNCTIONS TO UPDATE THE STATES //
   const handleClickForm = () => {
+    // Handle click event on the form element
     isVisible && setIsVisible(false);
     isDestinationVisible && setIsDestinationVisible(false);
   };
 
   const handleChange = (e: { target: { value: SetStateAction<string> } }) => {
+    // Handle change event on the first input field
     setSearchText(e.target.value);
     setIsVisible(false);
   };
 
   const handleVisibility = () => {
+    // Handle visibility of the first input field suggestions
     if (!searchText) {
       setIsVisible(true);
     }
   };
 
   const setInput = (text: string) => {
+    // Set input value on click in the first input component
     return () => {
       setSearchText(text);
       setIsRequestVisible(false);
@@ -37,6 +43,7 @@ const SearchBar = () => {
   };
 
   const setDestination = (text: string) => {
+    // Set input value on click in the second input component
     return () => {
       setDestinationText(text);
       setIsDestinationRequestVisible(false);
@@ -46,11 +53,13 @@ const SearchBar = () => {
   const handleDestinationChange = (e: {
     target: { value: SetStateAction<string> };
   }) => {
+    // Handle change event on the second input component
     setDestinationText(e.target.value);
     setIsDestinationVisible(false);
   };
 
   const handleDestinationVisibility = () => {
+    // Handle visibility of the second input component
     setIsDestinationVisible(true);
     setIsVisible(false);
   };
