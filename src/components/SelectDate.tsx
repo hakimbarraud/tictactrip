@@ -1,5 +1,3 @@
-import { format } from "date-fns";
-import { fr } from "date-fns/locale";
 import { useState } from "react";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
@@ -8,11 +6,6 @@ import { Iconly } from "react-iconly";
 const SelectDate = () => {
   const [startDate, setStartDate] = useState<Date | null>(new Date());
   const [endDate, setEndDate] = useState<Date | null>(null);
-
-  const formatDate = (date: Date | null) => {
-    if (!date) return "";
-    return format(date, "EE, d MMM", { locale: fr });
-  };
 
   return (
     <div className="p-3 rounded-lg mt-2 bg-neutral-100 flex gap-2 w-full overflow-hidden">
