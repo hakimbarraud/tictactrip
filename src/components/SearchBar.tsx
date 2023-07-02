@@ -1,10 +1,9 @@
+import { SetStateAction, useState } from "react";
 import { Iconly } from "react-iconly";
 import Input from "./Input";
 import SelectDate from "./SelectDate";
-import Way from "./Way";
 import ToggleSwitch from "./ToggleSwitch";
-import { SetStateAction, useState } from "react";
-import useAutocomplete from "../Hooks/useAutocomplete";
+import Way from "./Way";
 
 const SearchBar = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -14,9 +13,6 @@ const SearchBar = () => {
   const [isDestinationRequestVisible, setIsDestinationRequestVisible] =
     useState(true);
   const [destinationText, setDestinationText] = useState("");
-
-  const { data: request } = useAutocomplete(destinationText || searchText);
-
   const handleClickForm = () => {
     isVisible && setIsVisible(false);
     isDestinationVisible && setIsDestinationVisible(false);
@@ -74,12 +70,12 @@ const SearchBar = () => {
             />
           }
           isVisible={isVisible}
-          request={request}
           value={searchText}
           click={handleVisibility}
           setInput={setInput}
           isRequestVisible={isRequestVisible}
           change={handleChange}
+          fromtext={searchText}
         />
         <Input
           placeholder="To: City, Station Or Airport"
@@ -92,13 +88,13 @@ const SearchBar = () => {
             />
           }
           isDestinationVisible={isDestinationVisible}
-          request={request}
           value={destinationText}
           click={handleDestinationVisibility}
           setDestination={setDestination}
           isDestinationRequestVisible={isDestinationRequestVisible}
           change={handleDestinationChange}
           city={searchText}
+          toText={destinationText}
         />
         <SelectDate />
         <div>

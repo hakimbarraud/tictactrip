@@ -1,5 +1,4 @@
 import { ChangeEventHandler, ReactNode } from "react";
-import { AutocompleteType } from "../Hooks/useAutocomplete";
 import AutocompleteResults from "./AutocompleteResults";
 import DestinationOptions from "./DestinationOptions";
 import TrendingCities from "./TrendingCities";
@@ -9,7 +8,8 @@ interface Props {
   icon: ReactNode;
   value: string;
   city?: string;
-  request?: AutocompleteType[];
+  fromtext?: string;
+  toText?: string;
   isVisible?: boolean;
   isRequestVisible?: boolean;
   isDestinationRequestVisible?: boolean;
@@ -32,8 +32,9 @@ const Input = ({
   setInput,
   setDestination,
   click,
-  request,
   change,
+  fromtext = "",
+  toText = "",
 }: Props) => {
   return (
     <div className="relative">
@@ -50,13 +51,13 @@ const Input = ({
       </div>
       {isVisible && <TrendingCities setInput={setInput} />}
       {value && isRequestVisible && (
-        <AutocompleteResults request={request} setInput={setInput} />
+        <AutocompleteResults setInput={setInput} text={fromtext} />
       )}
       {isDestinationVisible && (
         <DestinationOptions setDestination={setDestination} city={city} />
       )}
       {value && isDestinationRequestVisible && (
-        <AutocompleteResults request={request} setInput={setDestination} />
+        <AutocompleteResults setInput={setDestination} text={toText} />
       )}
     </div>
   );
