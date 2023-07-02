@@ -1,5 +1,6 @@
 import { Fragment } from "react";
 import useDestinationCities from "../Hooks/useDestinationCities";
+import Loader from "./Loader";
 
 interface Props {
   setDestination?: (text: string) => () => void;
@@ -10,7 +11,7 @@ const DestinationOptions = ({
   setDestination,
   city,
 }: Pick<Props, "setDestination" | "city">) => {
-  const { data } = useDestinationCities(city);
+  const { data, isLoading } = useDestinationCities(city);
 
   if (!city) return null;
 
@@ -20,6 +21,7 @@ const DestinationOptions = ({
         Popular Destinations from "
         {city.charAt(0).toUpperCase() + city.slice(1)}"
       </p>
+      {isLoading && <Loader loading={isLoading} />}
       {data?.map((city) => (
         <Fragment key={city.id}>
           <p
